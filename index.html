@@ -1,0 +1,88 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>The HTML5 Herald</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+
+  <!-- <link rel="stylesheet" href="css/styles.css?v=1.0"> -->
+
+</head>
+
+<body>
+  <form action="">
+    Select files: <input type="file" id="myFile" name="img" multiple>
+  </form>
+
+  <p>Click the "Try it" button to find out if the file upload button accept multiple values (files).</p>
+
+  <button onclick="myFunction()">Try it</button>
+
+  <p id="demo"></p>
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script  src="https://www.gstatic.com/firebasejs/6.1.0/firebase.js"></script>
+  <!-- <script  src="./init-firebase.js"></script> -->
+
+  <script>
+
+  console.log(window.location.search);
+  var par = window.location.search;
+  par = par.replace("?id=", "");
+
+  var config = {
+    apiKey: "AIzaSyAVVFwh_PmRuKlsMF7sOAAUkDn5eVj0zd4",
+    authDomain: "copygeneral-f7c91.firebaseapp.com",
+    projectId: "copygeneral-f7c91",
+    storageBucket: "copygeneral-f7c91.appspot.com",
+    databaseURL: "copygeneral-f7c91.firebaseio.com"
+  };
+  firebase.initializeApp(config);
+
+  // Get a reference to the database service
+  var database = firebase.database();
+  var storageRef = firebase.storage().ref();
+
+  // var bytes = new Uint8Array([0x48, 0x65, 0x6c, 0x6c, 0x6f, 0x2c, 0x20, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x21]);
+
+
+  document.getElementById('myFile').onchange = function (evt) {
+  console.log('Start uploaded a blob or file!');
+        var tgt = evt.target || window.event.srcElement,
+            files = tgt.files,
+            fl = files.length;
+            for(var i = 0; i < fl; i++){
+              storageRef.child(par + i +".jpg").put(files[i]).then(function(snapshot) {
+                console.log('Uploaded an array!');
+              });
+            }
+
+
+        // FileReader support
+        // if (FileReader && files && fl) {
+        //     var fr = new FileReader();
+        //     fr.onload = function () {
+        //         console.log(fr.result);
+        //
+        //     }
+        //     fr.readAsDataURL(files[0]);
+        // } else {
+        //     // fallback -- perhaps submit the input to an iframe and temporarily store
+        //     // them on the server until the user's session ends.
+        // }
+    }
+
+  function myFunction() {
+
+    var x = document.getElementById("myFile").files;
+
+
+    var file = x[0]; // use the Blob or File API
+
+
+  }
+  </script>
+</body>
+</html>
