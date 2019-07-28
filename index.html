@@ -95,22 +95,87 @@
         </div>
 
         <div class="row">
+              <div class="col s4">
+                <form action="#">
+                  <p>
+                    <label>
+                      <input name="group1" type="radio" checked />
+                      <span><font size="40">A2</font></span>
+                    </label>
+                  </p>
+                  <p>
+                    <label>
+                      <input name="group1" type="radio" />
+                      <span><font size="40">A3</font></span>
+                    </label>
+                  </p>
+                  <p>
+                    <label>
+                      <input class="with-gap" name="group1" type="radio"  />
+                      <span><font size="40">A4</font></span>
+                    </label>
+                  </p>
+                </form>
+
+
+              </div>
+              <div class="col s4">
+                <form action="#">
+                  <p>
+                    <label>
+                      <input name="group1" type="radio" checked />
+                      <span><font size="40">Standart</font></span>
+                    </label>
+                  </p>
+                  <p>
+                    <label>
+                      <input name="group1" type="radio" />
+                      <span><font size="40">Luxus</font></span>
+                    </label>
+                  </p>
+                </form>
+              </div>
+              <div class="col s4">
+                <form action="#">
+                  <p>
+                    <label>
+                      <input name="group1" type="radio" checked />
+                      <span><font size="40">48h</font></span>
+                    </label>
+                  </p>
+                  <p>
+                    <label>
+                      <input name="group1" type="radio" />
+                      <span><font size="40">24h + 500kc</font></span>
+                    </label>
+                  </p>
+                  <p>
+                    <label>
+                      <input class="with-gap" name="group1" type="radio"  />
+                      <span><font size="40">12h + 800kc</font></span>
+                    </label>
+                  </p>
+                </form>
+              </div>
+            </div>
+
+        <div class="row">
         <div class="col s6">
             <button id="btn_ls" class="btn2">Last style</button>
         </div>
         <div class="col s6">
             <button id="btn_ns" class="btn2">Next style</button>
         </div>
-        <div class="col s6">
-            <button id="btn_lp" class="btn2">Last page</button>
-        </div>
-        <div class="col s6">
-          <button id="btn_np" class="btn2">Next page</button>
-        </div>
       </div>
 
+
       <button id="btn_ok" class="btn">OK</button>
+
+
+
     </div>
+
+
 
 
 <div id="domino" style="display: none;">
@@ -152,6 +217,10 @@
         </div>
       </div>
     </form>
+
+
+
+
     <button id="btn_final" class="btn2">Accept</button>
   </div>
 
@@ -245,21 +314,21 @@ ctr_btn_s++;
        });
  });
 
- document.getElementById('btn_np').addEventListener("click", function(){
- ctr_btn_p++;
-   firebase.database().ref(par + '/page').set({
-
-         value: ctr_btn_p
-       });
- });
-
- document.getElementById('btn_lp').addEventListener("click", function(){
-ctr_btn_p--;
-   firebase.database().ref(par + '/page').set({
-
-         value: ctr_btn_p
-       });
- });
+//  document.getElementById('btn_np').addEventListener("click", function(){
+//  ctr_btn_p++;
+//    firebase.database().ref(par + '/page').set({
+//
+//          value: ctr_btn_p
+//        });
+//  });
+//
+//  document.getElementById('btn_lp').addEventListener("click", function(){
+// ctr_btn_p--;
+//    firebase.database().ref(par + '/page').set({
+//
+//          value: ctr_btn_p
+//        });
+//  });
 
 
  document.getElementById('btn_ok').addEventListener("click", function(){
@@ -283,6 +352,8 @@ ctr_btn_p--;
  document.getElementById('inst').addEventListener("click", function(){
       window.open("https://www.instagram.com/copygeneral_cz/", "_blank");
  });
+
+
   </script>
 </body>
 </html>
