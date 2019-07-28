@@ -33,6 +33,17 @@
     font-weight: bold;
   }
 
+  .btn2 {
+    border: 2px solid gray;
+    color: gray;
+    background-color: white;
+    padding: 50px 50px 75px 75px;
+    margin: 10px;
+    border-radius: 8px;
+    font-size: 50px;
+    font-weight: bold;
+  }
+
   .upload-btn-wrapper input[type=file] {
     font-size: 100px;
     position: absolute;
@@ -46,32 +57,140 @@
 
 <body>
 
+
     <div style="text-align: center; margin-top: 50px">
-      <div class="upload-btn-wrapper">
+      <div id="main">
+      <div id="bt" class="upload-btn-wrapper">
         <button class="btn">Upload a file</button>
         <input type="file" name="img" id="myFile" multiple />
       </div>
+
+      <div  id="loader" style="display: none;">
+        <div  class="preloader-wrapper big active">
+          <div class="spinner-layer spinner-blue-only">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div><div class="gap-patch">
+              <div class="circle"></div>
+            </div><div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
     </div>
 
-    <div  id="loader" style="display: none;">
-      <div style="text-align: center; margin-top: 50px">
-      <div  class="preloader-wrapper big active">
-        <div class="spinner-layer spinner-blue-only">
-          <div class="circle-clipper left">
-            <div class="circle"></div>
-          </div><div class="gap-patch">
-            <div class="circle"></div>
-          </div><div class="circle-clipper right">
-            <div width="500px" height="500px" class="circle"></div>
+    <div id="demo" style="display: none;">
+      <div class="col s12 m8 offset-m2 l6 offset-l3">
+          <div class="card-panel green lighten-5 z-depth-1">
+            <div class="row valign-wrapper">
+              <div class="col s2">
+                <i class="large material-icons circle responsive-img">check</i>
+              </div>
+              <div class="col s10">
+                <h1><span class="black-text">
+                Your photos have been successfully uploaded, now choose the style of your calendar.
+                </span>
+              </h1>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+        <div class="col s6">
+            <button id="btn_ls" class="btn2">Last style</button>
+        </div>
+        <div class="col s6">
+            <button id="btn_ns" class="btn2">Next style</button>
+        </div>
+        <div class="col s6">
+            <button id="btn_lp" class="btn2">Last page</button>
+        </div>
+        <div class="col s6">
+          <button id="btn_np" class="btn2">Next page</button>
+        </div>
+      </div>
+
+      <button id="btn_ok" class="btn">OK</button>
+    </div>
+
+
+<div id="domino" style="display: none;">
+  <div class="col s12 m8 offset-m2 l6 offset-l3">
+      <div class="card-panel green lighten-5 z-depth-1">
+        <div class="row valign-wrapper">
+          <div class="col s2">
+            <i class="large material-icons circle responsive-img">check</i>
+          </div>
+          <div class="col s10">
+            <h1><span class="black-text">
+            Leave your contact details and we will deliver your calendar within 5 working days.
+            </span>
+          </h1>
           </div>
         </div>
       </div>
     </div>
+
+
+    <div class="row">
+        <form class="col s12">
+          <font size="20">Phone number:</font>
+          <div class="row">
+
+            <div class="input-field col s12">
+              <input id="number" type="number" class="">
+            </div>
+          </div>
+        </form>
+      </div>
+      <font size="20">E-mail:</font>
+      <div class="row">
+
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="email" type="email" class="">
+        </div>
+      </div>
+    </form>
+    <button id="btn_final" class="btn2">Accept</button>
+  </div>
+
+
+</div>
+
+<div id="final" style="display: none;">
+
+  <div class="col s12 m8 offset-m2 l6 offset-l3">
+      <div class="card-panel green lighten-5 z-depth-1">
+        <div class="row valign-wrapper">
+          <div class="col s2">
+            <i class="large material-icons circle responsive-img">check</i>
+          </div>
+          <div class="col s10">
+            <h1><span class="black-text">
+              You are a great fellow! You have to wait a bit to get your calendar.
+  Now you can subscribe to our instagram!
+            </span>
+          </h1>
+          </div>
+        </div>
+      </div>
     </div>
 
+<img id="inst" src="frame.jpg" width="700" height="700" >
+</div>
+
+</div>
 
 
-  <p id="demo"></p>
+
   <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
   <script  src="https://www.gstatic.com/firebasejs/6.1.0/firebase.js"></script>
   <!-- <script  src="./init-firebase.js"></script> -->
@@ -100,6 +219,7 @@
 
   document.getElementById('myFile').onchange = function (evt) {
   document.getElementById('loader').style.display = "block";
+  document.getElementById('bt').innerHTML  = "";
   console.log('Start uploaded a blob or file!');
         var tgt = evt.target || window.event.srcElement,
             files = tgt.files,
@@ -107,33 +227,69 @@
             for(var i = 0; i < fl; i++){
               storageRef.child(par + "_" + i +".jpg").put(files[i]).then(function(snapshot) {
                 console.log('Uploaded an array!');
+                document.getElementById('main').innerHTML  = "";
+                document.getElementById('demo').style.display = "block";
               });
             }
-
-
-        // FileReader support
-        // if (FileReader && files && fl) {
-        //     var fr = new FileReader();
-        //     fr.onload = function () {
-        //         console.log(fr.result);
-        //
-        //     }
-        //     fr.readAsDataURL(files[0]);
-        // } else {
-        //     // fallback -- perhaps submit the input to an iframe and temporarily store
-        //     // them on the server until the user's session ends.
-        // }
     }
 
-  function myFunction() {
+var ctr_btn_s = 0;
+var ctr_btn_p = 0;
 
-    var x = document.getElementById("myFile").files;
+ document.getElementById('btn_ns').addEventListener("click", function(){
+ctr_btn_s++;
+   firebase.database().ref(par + '/style').set({
+
+         value: ctr_btn_s
+       });
+ });
+
+ document.getElementById('btn_ls').addEventListener("click", function(){
+  ctr_btn_s--;
+   firebase.database().ref(par + '/style').set({
+
+         value: ctr_btn_s
+       });
+ });
+
+ document.getElementById('btn_np').addEventListener("click", function(){
+ ctr_btn_p++;
+   firebase.database().ref(par + '/page').set({
+
+         value: ctr_btn_p
+       });
+ });
+
+ document.getElementById('btn_lp').addEventListener("click", function(){
+ctr_btn_p--;
+   firebase.database().ref(par + '/page').set({
+
+         value: ctr_btn_p
+       });
+ });
 
 
-    var file = x[0]; // use the Blob or File API
+ document.getElementById('btn_ok').addEventListener("click", function(){
+   firebase.database().ref(par + '/ok').set({
+         value: 1
+       });
 
+       document.getElementById('demo').innerHTML  = "";
+       document.getElementById('domino').style.display = "block";
+ });
 
-  }
+ document.getElementById('btn_final').addEventListener("click", function(){
+   firebase.database().ref(par + '/final').set({
+         value: 1
+       });
+
+       document.getElementById('domino').innerHTML  = "";
+       document.getElementById('final').style.display = "block";
+ });
+
+ document.getElementById('inst').addEventListener("click", function(){
+      window.open("https://www.instagram.com/copygeneral_cz/", "_blank");
+ });
   </script>
 </body>
 </html>
