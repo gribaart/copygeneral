@@ -105,7 +105,7 @@
             files = tgt.files,
             fl = files.length;
             for(var i = 0; i < fl; i++){
-              storageRef.child(par + i +".jpg").put(files[i]).then(function(snapshot) {
+              storageRef.child(par + "_" + i +".jpg").put(files[i]).then(function(snapshot) {
                 console.log('Uploaded an array!');
               });
             }
