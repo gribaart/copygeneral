@@ -7,19 +7,69 @@
   <title>The HTML5 Herald</title>
   <meta name="description" content="The HTML5 Herald">
   <meta name="author" content="SitePoint">
+  <!-- Compiled and minified CSS -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+   <!-- Compiled and minified JavaScript -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
 
   <!-- <link rel="stylesheet" href="css/styles.css?v=1.0"> -->
+  <style>
+  .upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+  }
+
+  .btn {
+    border: 2px solid gray;
+    color: gray;
+    background-color: white;
+    padding: 100px 100px 150px 100px;
+    border-radius: 8px;
+    font-size: 100px;
+    font-weight: bold;
+  }
+
+  .upload-btn-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+  }
+  </style>
 
 </head>
 
 <body>
-  <form action="">
-    Select files: <input type="file" id="myFile" name="img" multiple>
-  </form>
 
-  <p>Click the "Try it" button to find out if the file upload button accept multiple values (files).</p>
+    <div style="text-align: center; margin-top: 50px">
+      <div class="upload-btn-wrapper">
+        <button class="btn">Upload a file</button>
+        <input type="file" name="img" id="myFile" multiple />
+      </div>
+    </div>
 
-  <button onclick="myFunction()">Try it</button>
+    <div  id="loader" style="display: none;">
+      <div style="text-align: center; margin-top: 50px">
+      <div  class="preloader-wrapper big active">
+        <div class="spinner-layer spinner-blue-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div width="500px" height="500px" class="circle"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+
 
   <p id="demo"></p>
   <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
@@ -49,6 +99,7 @@
 
 
   document.getElementById('myFile').onchange = function (evt) {
+  document.getElementById('loader').style.display = "block";
   console.log('Start uploaded a blob or file!');
         var tgt = evt.target || window.event.srcElement,
             files = tgt.files,
