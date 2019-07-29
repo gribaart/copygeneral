@@ -341,8 +341,8 @@ ctr_btn_s++;
  });
 
  document.getElementById('btn_final').addEventListener("click", function(){
-   firebase.database().ref(par + '/final').set({
-         value: 1
+   firebase.database().ref(par + '/ok').set({
+         value: 0
        });
 
        document.getElementById('domino').innerHTML  = "";
