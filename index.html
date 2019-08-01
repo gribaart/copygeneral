@@ -56,17 +56,20 @@
 </head>
 
 <body onload="twoScript()">
-
+<center>
 
     <div style="text-align: center; margin-top: 50px">
-      <div id="main">
-<img src="upload.jpg" width="1000">
-      <div id="bt" class="upload-btn-wrapper">
 
-        <h1>Choose 13 photos</h1>
-        <h1>from your gallery</h1>
+      <div id="main">
+        <div id="bt">
+          <img src="upload.jpg" width="1000">
+          <h1>Choose 13 photos</h1>
+          <h1>from your gallery</h1>
+        </div>
+        <div class="upload-btn-wrapper">
         <button class="btn">Upload</button>
         <input type="file" name="img" id="myFile" multiple />
+        </div>
       </div>
 
 
@@ -103,21 +106,21 @@
         <div class="row">
               <div class="col s4">
                 <form action="#">
-                  <p>
+                  <p  id="a5">
                     <label>
-                      <input id="a5" name="group1" type="radio" checked />
+                      <input name="group1" type="radio" checked />
                       <span><font size="40">A5</font></span>
                     </label>
                   </p>
                   <p>
-                    <label>
-                      <input id="a4" name="group1" type="radio" />
+                    <label  id="a4">
+                      <input name="group1" type="radio" />
                       <span><font size="40">A4</font></span>
                     </label>
                   </p>
-                  <p>
+                  <p id="a3">
                     <label>
-                      <input id="a3" class="with-gap" name="group1" type="radio"  />
+                      <input  class="with-gap" name="group1" type="radio"  />
                       <span><font size="40">A3</font></span>
                     </label>
                   </p>
@@ -180,7 +183,7 @@
       </div>
 
       <div class="col s6">
-          <button id="btn_p" click="myScript()" class="btn2">Next page</button>
+          <button id="btn_np" class="btn2">Next page</button>
       </div>
     </div>
 
@@ -268,7 +271,7 @@
 </div>
 
 
-
+</center>
   <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
   <script  src="https://www.gstatic.com/firebasejs/6.1.0/firebase.js"></script>
   <!-- <script  src="./init-firebase.js"></script> -->
@@ -316,14 +319,6 @@ var ctr_btn_p = 0;
 
 
 
- function myScript(){
- ctr_btn_p++;
-   firebase.database().ref(par + '/page').set({
-         value: ctr_btn_p
-       });
-}
-
-
 
 function twoScript(){
 console.log('Main!');
@@ -332,6 +327,14 @@ console.log('Main!');
     ctr_btn_s++;
     firebase.database().ref(par + '/style').set({
           value: ctr_btn_s
+        });
+  });
+
+  document.getElementById('btn_np').addEventListener("click", function(){
+    console.log('btn_np!');
+    ctr_btn_p++;
+    firebase.database().ref(par + '/page').set({
+          value: ctr_btn_p
         });
   });
 
@@ -353,21 +356,21 @@ console.log('Main!');
         });
   });
 
-  document.getElementById('a5').addEventListener("onchange", function(){
+  document.getElementById('a5').addEventListener("click", function(){
     console.log('btn_a5!');
     firebase.database().ref(par + '/size').set({
           value: 0
         });
   });
 
-  document.getElementById('a4').addEventListener("onchange", function(){
+  document.getElementById('a4').addEventListener("click", function(){
     console.log('btn_a4!');
     firebase.database().ref(par + '/size').set({
           value: 1
         });
   });
 
-  document.getElementById('a3').addEventListener("onchange", function(){
+  document.getElementById('a3').addEventListener("click", function(){
     console.log('btn_a3!');
     firebase.database().ref(par + '/size').set({
           value: 2
