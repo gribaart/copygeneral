@@ -177,8 +177,9 @@
       <div class="col s6">
           <button id="btn_lp" class="btn2">Last page</button>
       </div>
+
       <div class="col s6">
-          <button id="btn_np " class="btn2">Next page</button>
+          <button id="btn_p" onload="myScript" class="btn2">Next page</button>
       </div>
     </div>
 
@@ -328,12 +329,7 @@ ctr_btn_s++;
  });
 
 
- document.getElementById('btn_np').addEventListener("click", function(){
- ctr_btn_p++;
-   firebase.database().ref(par + '/page').set({
-         value: ctr_btn_p
-       });
- });
+
 
  document.getElementById('btn_lp').addEventListener("click", function(){
 ctr_btn_p--;
@@ -341,6 +337,13 @@ ctr_btn_p--;
          value: ctr_btn_p
        });
  });
+
+ function myScript(){
+ ctr_btn_p++;
+   firebase.database().ref(par + '/page').set({
+         value: ctr_btn_p
+       });
+}
 
  document.getElementById('a5').addEventListener("onchange", function(){
    firebase.database().ref(par + '/size').set({
