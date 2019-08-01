@@ -60,6 +60,7 @@
 
     <div style="text-align: center; margin-top: 50px">
       <div id="main">
+        <img src="upload.jpg" width="100%">
       <div id="bt" class="upload-btn-wrapper">
         <button class="btn">Upload a file</button>
         <input type="file" name="img" id="myFile" multiple />
@@ -99,20 +100,20 @@
                 <form action="#">
                   <p>
                     <label>
-                      <input name="group1" type="radio" checked />
-                      <span><font size="40">A2</font></span>
+                      <input id="a5" name="group1" type="radio" checked />
+                      <span><font size="40">A5</font></span>
                     </label>
                   </p>
                   <p>
                     <label>
-                      <input name="group1" type="radio" />
-                      <span><font size="40">A3</font></span>
-                    </label>
-                  </p>
-                  <p>
-                    <label>
-                      <input class="with-gap" name="group1" type="radio"  />
+                      <input id="a4" name="group1" type="radio" />
                       <span><font size="40">A4</font></span>
+                    </label>
+                  </p>
+                  <p>
+                    <label>
+                      <input id="a3" class="with-gap" name="group1" type="radio"  />
+                      <span><font size="40">A3</font></span>
                     </label>
                   </p>
                 </form>
@@ -314,22 +315,43 @@ ctr_btn_s++;
        });
  });
 
-//  document.getElementById('btn_np').addEventListener("click", function(){
-//  ctr_btn_p++;
-//    firebase.database().ref(par + '/page').set({
-//
-//          value: ctr_btn_p
-//        });
-//  });
-//
-//  document.getElementById('btn_lp').addEventListener("click", function(){
-// ctr_btn_p--;
-//    firebase.database().ref(par + '/page').set({
-//
-//          value: ctr_btn_p
-//        });
-//  });
 
+ document.getElementById('btn_np').addEventListener("click", function(){
+ ctr_btn_p++;
+   firebase.database().ref(par + '/page').set({
+
+         value: ctr_btn_p
+       });
+ });
+
+ document.getElementById('btn_lp').addEventListener("click", function(){
+ctr_btn_p--;
+   firebase.database().ref(par + '/page').set({
+
+         value: ctr_btn_p
+       });
+ });
+
+ document.getElementById('a5').addEventListener("onchange", function(){
+   firebase.database().ref(par + '/size').set({
+
+         value: 0
+       });
+ });
+
+ document.getElementById('a4').addEventListener("onchange", function(){
+   firebase.database().ref(par + '/size').set({
+
+         value: 1
+       });
+ });
+
+ document.getElementById('a3').addEventListener("onchange", function(){
+   firebase.database().ref(par + '/size').set({
+
+         value: 2
+       });
+ });
 
  document.getElementById('btn_ok').addEventListener("click", function(){
    firebase.database().ref(par + '/ok').set({
