@@ -55,15 +55,16 @@
 
 </head>
 
-<body>
+<body onload="main">
 
 
     <div style="text-align: center; margin-top: 50px">
       <div id="main">
-      <img src="upload.jpg" width="1000">
-      <h1>Choose 13 photos</h1>
-      <h1>from your gallery</h1>
+<img src="upload.jpg" width="1000">
       <div id="bt" class="upload-btn-wrapper">
+
+        <h1>Choose 13 photos</h1>
+        <h1>from your gallery</h1>
         <button class="btn">Upload</button>
         <input type="file" name="img" id="myFile" multiple />
       </div>
@@ -313,30 +314,7 @@
 var ctr_btn_s = 0;
 var ctr_btn_p = 0;
 
- document.getElementById('btn_ns').addEventListener("click", function(){
-ctr_btn_s++;
-   firebase.database().ref(par + '/style').set({
-         value: ctr_btn_s
-       });
- });
 
- document.getElementById('btn_ls').addEventListener("click", function(){
-  ctr_btn_s--;
-   firebase.database().ref(par + '/style').set({
-
-         value: ctr_btn_s
-       });
- });
-
-
-
-
- document.getElementById('btn_lp').addEventListener("click", function(){
-ctr_btn_p--;
-   firebase.database().ref(par + '/page').set({
-         value: ctr_btn_p
-       });
- });
 
  function myScript(){
  ctr_btn_p++;
@@ -345,47 +323,74 @@ ctr_btn_p--;
        });
 }
 
- document.getElementById('a5').addEventListener("onchange", function(){
-   firebase.database().ref(par + '/size').set({
-         value: 0
-       });
- });
-
- document.getElementById('a4').addEventListener("onchange", function(){
-   firebase.database().ref(par + '/size').set({
-         value: 1
-       });
- });
-
- document.getElementById('a3').addEventListener("onchange", function(){
-   firebase.database().ref(par + '/size').set({
-         value: 2
-       });
- });
-
- document.getElementById('btn_ok').addEventListener("click", function(){
-   firebase.database().ref(par + '/ok').set({
-         value: 1
-       });
-
-       document.getElementById('demo').innerHTML  = "";
-       document.getElementById('domino').style.display = "block";
- });
-
- document.getElementById('btn_final').addEventListener("click", function(){
-   firebase.database().ref(par + '/ok').set({
-         value: 0
-       });
-
-       document.getElementById('domino').innerHTML  = "";
-       document.getElementById('final').style.display = "block";
- });
-
- document.getElementById('inst').addEventListener("click", function(){
-      window.open("https://www.instagram.com/copygeneral_cz/", "_blank");
- });
 
 
+function main(){
+
+  document.getElementById('btn_ns').addEventListener("click", function(){
+    ctr_btn_s++;
+    firebase.database().ref(par + '/style').set({
+          value: ctr_btn_s
+        });
+  });
+
+  document.getElementById('btn_ls').addEventListener("click", function(){
+   ctr_btn_s--;
+    firebase.database().ref(par + '/style').set({
+
+          value: ctr_btn_s
+        });
+  });
+
+
+  document.getElementById('btn_lp').addEventListener("click", function(){
+    ctr_btn_p--;
+    firebase.database().ref(par + '/page').set({
+          value: ctr_btn_p
+        });
+  });
+  
+  document.getElementById('a5').addEventListener("onchange", function(){
+    firebase.database().ref(par + '/size').set({
+          value: 0
+        });
+  });
+
+  document.getElementById('a4').addEventListener("onchange", function(){
+    firebase.database().ref(par + '/size').set({
+          value: 1
+        });
+  });
+
+  document.getElementById('a3').addEventListener("onchange", function(){
+    firebase.database().ref(par + '/size').set({
+          value: 2
+        });
+  });
+
+  document.getElementById('btn_ok').addEventListener("click", function(){
+    firebase.database().ref(par + '/ok').set({
+          value: 1
+        });
+
+        document.getElementById('demo').innerHTML  = "";
+        document.getElementById('domino').style.display = "block";
+  });
+
+  document.getElementById('btn_final').addEventListener("click", function(){
+    firebase.database().ref(par + '/ok').set({
+          value: 0
+        });
+
+        document.getElementById('domino').innerHTML  = "";
+        document.getElementById('final').style.display = "block";
+  });
+
+  document.getElementById('inst').addEventListener("click", function(){
+       window.open("https://www.instagram.com/copygeneral_cz/", "_blank");
+  });
+
+}
   </script>
 </body>
 </html>
